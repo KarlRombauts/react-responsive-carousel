@@ -87,4 +87,5 @@ export interface CarouselState {
     slideStyle?: React.CSSProperties;
     selectedStyle?: React.CSSProperties;
     prevStyle?: React.CSSProperties;
+    heights: number[];
 }

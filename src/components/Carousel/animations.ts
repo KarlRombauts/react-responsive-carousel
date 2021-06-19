@@ -18,7 +18,7 @@ export const slideAnimationHandler: AnimationHandler = (props, state): Animation
     // Handle list position if it needs a clone
     if (needClonedSlide) {
         if (previousItem < 0) {
-            if (props.centerMode && props.centerSlidePercentage && props.axis === 'horizontal') {
+            if (props.centerMode && props.centerSlidePercentage) {
                 returnStyles.itemListStyle = setPosition(
                     -(lastPosition + 2) * props.centerSlidePercentage - (100 - props.centerSlidePercentage) / 2,
                     props.axis
@@ -33,7 +33,7 @@ export const slideAnimationHandler: AnimationHandler = (props, state): Animation
         return returnStyles;
     }
 
-    const currentPosition = getPosition(selectedItem, props);
+    const currentPosition = getPosition(selectedItem, props, state);
 
     // if 3d is available, let's take advantage of the performance of transform
     const transformProp = CSSTranslate(currentPosition, '%', props.axis);
@@ -80,10 +80,10 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
 
     const initialBoundry = 0;
 
-    const currentPosition = getPosition(state.selectedItem, props);
+    const currentPosition = getPosition(state.selectedItem, props, state);
     const finalBoundry = props.infiniteLoop
-        ? getPosition(childrenLength - 1, props) - 100
-        : getPosition(childrenLength - 1, props);
+        ? getPosition(childrenLength - 1, props, state) - 100
+        : getPosition(childrenLength - 1, props, state);
 
     const axisDelta = isHorizontal ? delta.x : delta.y;
     let handledDelta = axisDelta;
@@ -134,7 +134,7 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
  * @param state
  */
 export const slideStopSwipingHandler: StopSwipingHandler = (props, state): AnimationHandlerResponse => {
-    const currentPosition = getPosition(state.selectedItem, props);
+    const currentPosition = getPosition(state.selectedItem, props, state);
     const itemListStyle = setPosition(currentPosition, props.axis);
 
     return {

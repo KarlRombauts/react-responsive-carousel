@@ -132,6 +132,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             slideStyle: {},
             selectedStyle: {},
             prevStyle: {},
+            heights: [],
         };
 
         this.animationHandler =
@@ -381,6 +382,14 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         if (this.thumbsRef) {
             this.thumbsRef.updateSizes();
         }
+
+        const heights = Children.map(this.props.children, (_, index) => {
+            return this.getVariableItemHeight(index) || 0;
+        });
+
+        this.setState({
+            heights: heights || [],
+        });
     };
 
     setMountState = () => {

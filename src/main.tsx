@@ -5,35 +5,33 @@ import(/* webpackChunkName: "carousel-component" */ './components/Carousel').the
     const DemoCarousel = () => (
         <Carousel
             showArrows
-            infiniteLoop
+            // infiniteLoop
             autoPlay
+            centerMode
+            centerSlidePercentage={80}
             emulateTouch
+            dynamicHeight
+            axis="vertical"
             onClickItem={(...args) => console.log('onClickItem', ...args)}
             onChange={(...args) => console.log('onChange', ...args)}
             onClickThumb={(...args) => console.log('onClickThumb', ...args)}
         >
-            <div>
-                <img src="assets/1.jpeg" />
+            <div style={{ height: 800, background: 'blue' }}>
                 <p className="legend">Legend 1</p>
             </div>
-            <div>
-                <img src="assets/2.jpeg" />
+            <div style={{ height: 300, background: 'hotpink' }}>
                 <p className="legend">Legend 2</p>
             </div>
-            <div>
-                <img src="assets/3.jpeg" />
+            <div style={{ height: 500, background: 'violet' }}>
                 <p className="legend">Legend 3</p>
             </div>
-            <div>
-                <img src="assets/4.jpeg" />
+            <div style={{ height: 700, background: 'salmon' }}>
                 <p className="legend">Legend 4</p>
             </div>
-            <div>
-                <img src="assets/5.jpeg" />
+            <div style={{ height: 400, background: 'orange' }}>
                 <p className="legend">Legend 5</p>
             </div>
-            <div>
-                <img src="assets/6.jpeg" />
+            <div style={{ height: 300, background: 'teal' }}>
                 <p className="legend">Legend 6</p>
             </div>
         </Carousel>
